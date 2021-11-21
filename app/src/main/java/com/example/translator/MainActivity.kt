@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
@@ -16,7 +17,7 @@ import android.annotation.SuppressLint as SuppressLint1
 class MainActivity : AppCompatActivity() {
     var requestBtn: Button? = null
     var showText: TextView? = null
-
+    var deleteBtn: ImageButton?=null
     val okhttpListener = object : EventListener() {
         override fun dnsStart(call: Call, domainName: String) {
             super.dnsStart(call, domainName)
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun responseBodyStart(call: Call) {
             super.responseBodyStart(call)
-            showText?.text = showText?.text.toString() + "\n连接成功"
+            showText?.text = "\n连接成功"
         }
     }
     val client: OkHttpClient = OkHttpClient
@@ -41,7 +42,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         requestBtn = findViewById(R.id.send_request)
         showText = findViewById(R.id.show_text)
+        deleteBtn=findViewById(R.id.deletetext)
+        deleteBtn?.setOnClickListener {
 
+                delete()
+
+        }
         requestBtn?.setOnClickListener {
             if(System.currentTimeMillis()-lastTriggerTime>1000)
             click()
@@ -56,6 +62,13 @@ class MainActivity : AppCompatActivity() {
             .build()
         client.newCall(request).enqueue(callback)
     }
+    fun delete()
+    {
+        val editText=findViewById<EditText>(R.id.box)
+        editText.setText("")
+
+    }
+
     fun md5(content: String): String {
         val hash = MessageDigest.getInstance("MD5").digest(content.toByteArray())
         val hex = StringBuilder(hash.size * 2)
@@ -94,13 +107,10 @@ class MainActivity : AppCompatActivity() {
                 )
             val temp=jsonBean.trans_result.elementAt(0).dst.toString()
 
-                if(temp!=null)
+                if(!temp.isEmpty())
                 {
-
-
                         showText?.text =
-                            "Result: ${temp} \n" + url
-
+                            "翻译结果: \n ${temp} "
                 }
             }
         })

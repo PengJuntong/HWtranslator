@@ -13,26 +13,49 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:singleLine="true"
+        android:hint="请输入需要翻译的语句"
         android:id="@+id/box"
         />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="16dp"
+        android:background="#00FFFFFF"
+        android:foreground="@drawable/deletegray_foreground"
+        android:src="@drawable/deletegray_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/box"
+        app:layout_constraintRight_toRightOf="@+id/box"
+        app:layout_constraintTop_toTopOf="@+id/box"
+        app:layout_constraintVertical_bias="0.32"
+        app:tint="@color/deletegray_background"
+        android:scaleType="centerCrop"
+        android:id="@+id/deletetext"
+        />
+
     <Button
+        android:id="@+id/send_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:text="@string/send_request"
+        app:iconTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toTopOf="@+id/show_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/box"
-        android:text="@string/send_request"
-        android:id="@+id/send_request"/>
+        app:layout_constraintTop_toBottomOf="@+id/box" />
 
     <TextView
         android:id="@+id/show_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
-        android:text=""
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:scrollbars="vertical"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
