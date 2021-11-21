@@ -2,6 +2,7 @@ package com.example.translator
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
@@ -17,12 +18,12 @@ class MainActivity : AppCompatActivity() {
     val okhttpListener = object : EventListener() {
         override fun dnsStart(call: Call, domainName: String) {
             super.dnsStart(call, domainName)
-            showText?.text = showText?.text.toString() + "\nDns Search:" + domainName
+            //showText?.text = showText?.text.toString() + "\nDns Search:" + domainName
         }
 
         override fun responseBodyStart(call: Call) {
             super.responseBodyStart(call)
-            showText?.text = showText?.text.toString() + "\nResponse Start"
+            showText?.text = showText?.text.toString() + "\n连接成功"
         }
     }
     val client: OkHttpClient = OkHttpClient
@@ -65,7 +66,8 @@ class MainActivity : AppCompatActivity() {
         return hex.toString()
     }
     fun click() {
-        var target = "deliberately"
+        val editText = findViewById<EditText>(R.id.box)
+        var target = editText.text
         var sign="20211121001005133"+target+"12343234543GZwwNV1Uk0ds4zBNPGGC"
         sign=md5(sign)
         val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=zh&appid=20211121001005133&salt=12343234543&sign=$sign"
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-                showText?.text = "${showText?.text.toString()} \n\n\n" +
+                showText?.text =
                         "Result: ${jsonBean.trans_result.elementAt(0).dst} \n"
             }
         })

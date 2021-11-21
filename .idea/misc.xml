@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/delete_gray.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/deletegray_foreground.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/layout/activity_main.xml" value="0.10190217391304347" />
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/layout/activity_retrofit.xml" value="0.10190217391304347" />
       </map>

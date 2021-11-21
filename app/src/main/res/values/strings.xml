@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">translator</string>
     <string name="hello_android_network">default</string>
-    <string name="send_request">send_request</string>
+    <string name="send_request">点击翻译</string>
 </resources>
