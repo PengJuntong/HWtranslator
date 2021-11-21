@@ -1,6 +1,4 @@
-/**
- * Copyright 2021 bejson.com
- */
+
 package com.example.translator;
 import java.util.List;
 

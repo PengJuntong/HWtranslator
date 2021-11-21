@@ -1,17 +1,14 @@
 package com.example.translator
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.translator.JsonRootBean
-import com.example.translator.TimeConsumeInterceptor
-
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
 import java.security.MessageDigest
+import android.annotation.SuppressLint as SuppressLint1
 
 class MainActivity : AppCompatActivity() {
     var requestBtn: Button? = null
@@ -68,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         return hex.toString()
     }
     fun click() {
-        var target = "apple"
+        var target = "deliberately"
         var sign="20211121001005133"+target+"12343234543GZwwNV1Uk0ds4zBNPGGC"
         sign=md5(sign)
         val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=zh&appid=20211121001005133&salt=12343234543&sign=$sign"
@@ -77,14 +74,19 @@ class MainActivity : AppCompatActivity() {
                 showText?.text = e.message
             }
 
+            @SuppressLint1("SetTextI18n")
             override fun onResponse(call: Call, response: Response) {
                 val bodyString = response.body?.string()
-                val doubanBean = gson.fromJson(bodyString, JsonRootBean::class.java)
+                val jsonBean = gson.fromJson(
+                    bodyString,
+                    JsonRootBean::class.java
+
+                )
 
 
 
                 showText?.text = "${showText?.text.toString()} \n\n\n" +
-                        "Originalname: ${doubanBean.trans_result.elementAt(0).dst} \n"+url
+                        "Result: ${jsonBean.trans_result.elementAt(0).dst} \n"
             }
         })
     }
