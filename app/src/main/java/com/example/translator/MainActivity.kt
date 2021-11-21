@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun click() {
         val editText = findViewById<EditText>(R.id.box)
-        var target = editText.text
+        var target = " "+editText.text
         var sign="20211121001005133"+target+"12343234543GZwwNV1Uk0ds4zBNPGGC"
         sign=md5(sign)
         val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=zh&appid=20211121001005133&salt=12343234543&sign=$sign"
