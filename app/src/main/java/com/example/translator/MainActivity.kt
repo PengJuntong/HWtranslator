@@ -71,11 +71,16 @@ class MainActivity : AppCompatActivity() {
     fun click() {
         val editText = findViewById<EditText>(R.id.box)
         var target = " "+editText.text
+
+
         var sign="20211121001005133"+target+"12343234543GZwwNV1Uk0ds4zBNPGGC"
         sign=md5(sign)
         val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=zh&appid=20211121001005133&salt=12343234543&sign=$sign"
-        request(url, object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
+        if(target.firstOrNull{it=='&'}!=null)
+            showText?.text =" 存在非法字符 "
+        else{
+            request(url, object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
                 showText?.text = "翻译失败"
             }
 
@@ -87,15 +92,17 @@ class MainActivity : AppCompatActivity() {
                     JsonRootBean::class.java
 
                 )
-            val temp=jsonBean.trans_result.elementAt(0).dst
+            val temp=jsonBean.trans_result.elementAt(0).dst.toString()
 
                 if(temp!=null)
                 {
 
-                    showText?.text =
-                        "Result: ${temp} \n"
+
+                        showText?.text =
+                            "Result: ${temp} \n" + url
+
                 }
             }
         })
     }
-}
+}}
