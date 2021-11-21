@@ -1,6 +1,7 @@
 package com.example.translator
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -10,6 +11,7 @@ import okhttp3.*
 import java.io.IOException
 import java.security.MessageDigest
 import android.annotation.SuppressLint as SuppressLint1
+
 
 class MainActivity : AppCompatActivity() {
     var requestBtn: Button? = null
@@ -28,12 +30,12 @@ class MainActivity : AppCompatActivity() {
     }
     val client: OkHttpClient = OkHttpClient
         .Builder()
-        .addInterceptor(TimeConsumeInterceptor())
+        //.addInterceptor(TimeConsumeInterceptor())
         .eventListener(okhttpListener).build()
 
     val gson = GsonBuilder().create()
 
-
+    private var lastTriggerTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,8 +43,9 @@ class MainActivity : AppCompatActivity() {
         showText = findViewById(R.id.show_text)
 
         requestBtn?.setOnClickListener {
-            showText?.text = ""
+            if(System.currentTimeMillis()-lastTriggerTime>1000)
             click()
+            lastTriggerTime=System.currentTimeMillis()
         }
     }
 
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=zh&appid=20211121001005133&salt=12343234543&sign=$sign"
         request(url, object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                showText?.text = e.message
+                showText?.text = "翻译失败"
             }
 
             @SuppressLint1("SetTextI18n")
@@ -84,11 +87,14 @@ class MainActivity : AppCompatActivity() {
                     JsonRootBean::class.java
 
                 )
+            val temp=jsonBean.trans_result.elementAt(0).dst
 
+                if(temp!=null)
+                {
 
-
-                showText?.text =
-                        "Result: ${jsonBean.trans_result.elementAt(0).dst} \n"
+                    showText?.text =
+                        "Result: ${temp} \n"
+                }
             }
         })
     }
