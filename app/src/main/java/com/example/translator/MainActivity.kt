@@ -2,10 +2,7 @@ package com.example.translator
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import okhttp3.*
@@ -33,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         .Builder()
         //.addInterceptor(TimeConsumeInterceptor())
         .eventListener(okhttpListener).build()
+
 
     val gson = GsonBuilder().create()
 
@@ -82,13 +80,17 @@ class MainActivity : AppCompatActivity() {
         return hex.toString()
     }
     fun click() {
+        val lang= findViewById<Switch>(R.id.changelang)
         val editText = findViewById<EditText>(R.id.box)
         var target = " "+editText.text
+        var language="zh"
+        if(lang.isChecked())
+            language="en"
+        else language="zh"
 
-
-        var sign="20211121001005133"+target+"12343234543GZwwNV1Uk0ds4zBNPGGC"
+        var sign="20211121001005133"+target+"1GZwwNV1Uk0ds4zBNPGGC"
         sign=md5(sign)
-        val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=zh&appid=20211121001005133&salt=12343234543&sign=$sign"
+        val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=$language&appid=20211121001005133&salt=1&sign=$sign"
         if(target.firstOrNull{it=='&'}!=null)
             showText?.text =" 存在非法字符 "
         else{

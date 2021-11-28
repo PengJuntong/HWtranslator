@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/delete_gray.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/deletegray_foreground.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/switch_ios_thumb.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/switch_ios_track_off.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/switch_ios_track_on.xml" value="0.1" />
+        <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/drawable/switch_ios_track_selector.xml" value="0.2916666666666667" />
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/layout/activity_main.xml" value="0.10190217391304347" />
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/layout/activity_retrofit.xml" value="0.10190217391304347" />
         <entry key="..\:/Users/junto/AndroidStudioProjects/translator/app/src/main/res/mipmap-anydpi-v26/deletegray.xml" value="0.2328125" />

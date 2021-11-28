@@ -2,4 +2,8 @@
 <resources>
     <string name="hello_android_network">default</string>
     <string name="send_request">点击翻译</string>
+    <string name="off">off</string>
+    <string name="on">on</string>
+    <string name="en">en</string>
+    <string name="ch">ch</string>
 </resources>

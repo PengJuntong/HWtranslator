@@ -34,17 +34,44 @@
         android:id="@+id/deletetext"
         />
 
-    <Button
-        android:id="@+id/send_request"
+    <LinearLayout
+        android:id="@+id/combine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/send_request"
-        app:iconTint="@android:color/holo_blue_dark"
+        tools:ignore="MissingConstraints"
         app:layout_constraintBottom_toTopOf="@+id/show_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/box" />
+        app:layout_constraintTop_toBottomOf="@+id/box"
+        android:orientation="horizontal">
+
+        <Switch
+
+         android:id="@+id/changelang"
+         android:layout_width="50dp"
+         android:layout_height="match_parent"
+         android:switchMinWidth="40dp"
+         android:textOn="@string/en"
+         android:textOff="@string/ch"
+         android:layout_marginLeft="5dp"
+            android:thumb="@drawable/switch_ios_thumb"
+            android:track="@drawable/switch_ios_track_selector"
+         android:showText="true"
+         tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+     <Button
+
+         android:id="@+id/send_request"
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:layout_margin="10dp"
+         android:text="@string/send_request"
+         app:iconTint="@android:color/holo_blue_dark"
+
+        />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/show_text"
@@ -59,6 +86,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/send_request" />
+        app:layout_constraintTop_toBottomOf="@id/combine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
