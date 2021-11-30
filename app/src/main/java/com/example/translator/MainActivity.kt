@@ -41,13 +41,14 @@ class MainActivity : AppCompatActivity() {
         requestBtn = findViewById(R.id.send_request)
         showText = findViewById(R.id.show_text)
         deleteBtn=findViewById(R.id.deletetext)
+        var inputBox = findViewById<EditText>(R.id.box)
         deleteBtn?.setOnClickListener {
 
                 delete()
 
         }
         requestBtn?.setOnClickListener {
-            if(System.currentTimeMillis()-lastTriggerTime>1000)
+            if(System.currentTimeMillis()-lastTriggerTime>1500 && ! inputBox.text.isEmpty())
             click()
             lastTriggerTime=System.currentTimeMillis()
         }
@@ -79,21 +80,22 @@ class MainActivity : AppCompatActivity() {
         }
         return hex.toString()
     }
+    @android.annotation.SuppressLint("UseSwitchCompatOrMaterialCode")
     fun click() {
         val lang= findViewById<Switch>(R.id.changelang)
         val editText = findViewById<EditText>(R.id.box)
-        var target = " "+editText.text
+        val target =editText.text
         var language="zh"
         if(lang.isChecked())
             language="en"
         else language="zh"
-
+        if(target.firstOrNull{it=='&'}!=null||target.isEmpty())
+            showText?.text =" 存在非法字符 "
+        else{
         var sign="20211121001005133"+target+"1GZwwNV1Uk0ds4zBNPGGC"
         sign=md5(sign)
         val url = "https://fanyi-api.baidu.com/api/trans/vip/translate?q=$target&from=auto&to=$language&appid=20211121001005133&salt=1&sign=$sign"
-        if(target.firstOrNull{it=='&'}!=null)
-            showText?.text =" 存在非法字符 "
-        else{
+
             request(url, object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                 showText?.text = "翻译失败"
@@ -112,8 +114,9 @@ class MainActivity : AppCompatActivity() {
                 if(!temp.isEmpty())
                 {
                         showText?.text =
-                            "翻译结果: \n ${temp} "
+                            "翻译结果: \n ${temp} \n"
                 }
+
             }
         })
     }

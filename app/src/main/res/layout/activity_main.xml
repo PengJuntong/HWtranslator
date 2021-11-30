@@ -8,7 +8,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/send_request"
+        app:layout_constraintBottom_toTopOf="@+id/combine"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,7 @@
          android:layout_height="match_parent"
          android:switchMinWidth="40dp"
          android:textOn="@string/en"
-         android:textOff="@string/ch"
+         android:textOff="@string/zh"
          android:layout_marginLeft="5dp"
             android:thumb="@drawable/switch_ios_thumb"
             android:track="@drawable/switch_ios_track_selector"
@@ -67,7 +67,8 @@
          android:layout_width="match_parent"
          android:layout_margin="10dp"
          android:text="@string/send_request"
-         app:iconTint="@android:color/holo_blue_dark"
+         android:layout="@drawable/button"
+
 
         />
 

@@ -15,7 +15,8 @@ public class Trans_result {
         this.dst = dst;
     }
     public String getDst() {
-        return dst;
+        if (dst!=null) return dst;
+        else return "error";
     }
 
 }
